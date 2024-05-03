@@ -4,8 +4,8 @@ using namespace std;
 class Node {
 public:
     Node *left;
-	Node *right;
-	int key;
+    Node *right;
+    int key;
     
     Node() {
         left = right = NULL;
@@ -20,11 +20,11 @@ public:
         root = NULL;
     }
     
-    Node *insertRecursive(int newKey, Node *currentRoot) {
-        if(currentRoot == NULL) {
+    Node* insertRecursive(int newKey, Node *currentRoot) {
+        if (currentRoot == NULL) {
             Node *newNode = new Node();
             newNode->key = newKey;
-            return newNode;
+            return newNode; 
         }
         
         if (newKey < currentRoot->key) {
@@ -41,7 +41,7 @@ public:
     }
     
     void preOrderRecursive(Node *currentRoot) {
-        if(currentRoot != NULL) {
+        if (currentRoot != NULL) {
             cout << currentRoot->key << " ";
             preOrderRecursive(currentRoot->left);
             preOrderRecursive(currentRoot->right);
@@ -49,13 +49,13 @@ public:
     }
     
     void preOrderTraversal() {
-        cout << "Pre Order Traversal : ";
+        cout << "PreOrder Traversal : ";
         preOrderRecursive(root);
         cout << endl;
     }
     
     void postOrderRecursive(Node *currentRoot) {
-        if(currentRoot != NULL) {
+        if (currentRoot != NULL) {
             postOrderRecursive(currentRoot->left);
             postOrderRecursive(currentRoot->right);
             cout << currentRoot->key << " ";
@@ -63,39 +63,41 @@ public:
     }
     
     void postOrderTraversal() {
-        cout << "Post Order Traversal : ";
+        cout << "PostOrder Traversal : ";
         postOrderRecursive(root);
         cout << endl;
     }
     
-    void inOrderRecursive(Node *currentRoot){
-    	if(currentRoot != NULL){
-    		postOrderRecursive(currentRoot->left); //kekiri
-    		cout << currentRoot->key << " "; //print
-    		postOrderRecursive(currentRoot->right); //kekanan
-		}
-	}
-	
-	void inOrderTravesal() {
-		cout << "In Order Travesal : ";
-		inOrderRecursive(root);
-		cout << endl;
-	}
+    void inOrderRecursive(Node *currentRoot) {
+        if (currentRoot != NULL) {
+            inOrderRecursive(currentRoot->left);
+            cout << currentRoot->key << " ";
+            inOrderRecursive(currentRoot->right);
+        }
+    }
+    
+    void inOrderTraversal() {
+        cout << "InOrder Traversal : ";
+        inOrderRecursive(root);
+        cout << endl;
+    }
+    
 };
 
-
-int main() {
-    BST bin1;
-    bin1.insert(6);
-    bin1.insert(7);
-    bin1.insert(4);
-    bin1.insert(8);
-    bin1.insert(5);
-    bin1.insert(3);
+int main(int argc, char** argv) {
     
-    bin1.preOrderTraversal();
-    bin1.postOrderTraversal();
-    bin1.inOrderTravesal();
+    BST *bin1 = new BST();
+    
+    bin1->insert(6);
+    bin1->insert(7);
+    bin1->insert(4);
+    bin1->insert(8);
+    bin1->insert(5);
+    bin1->insert(3);
+
+    bin1->preOrderTraversal();
+    bin1->postOrderTraversal();
+    bin1->inOrderTraversal();
     
     return 0;
 }
